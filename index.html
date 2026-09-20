@@ -69,7 +69,7 @@ body.list #cards{display:none}
 .opt.keep{border-color:var(--acc);border-width:2px;padding:9px 11px}
 .opt.keep kbd{background:var(--acc);color:var(--accInk);border-color:var(--acc)}
 .opt.sel{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 12%,var(--chip))}
-.opt.sel kbd::after{content:"\2713";position:absolute;margin:-26px 0 0 26px;font-size:12px;color:var(--acc)}
+.opt.sel kbd{background:var(--acc);color:var(--accInk);border-color:var(--acc)}
 .ow{font:600 20px/1.2 var(--serif)}
 .og{color:var(--faint);font-size:15px}
 .owhy{font-size:12px;color:var(--faint);display:block;margin-top:1px}
@@ -89,6 +89,71 @@ body.list #cards{display:none}
 .srchBox input{width:100%;font:inherit;font-size:17px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
 .srchHits{display:flex;flex-direction:column;gap:6px;margin-top:10px;max-height:46vh;overflow:auto}
 .srchHits .opt.on{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 12%,var(--chip))}
+
+/* ---- one-handed phone screen: read at the top, everything you touch at the bottom ---- */
+body.cards .actbar{position:fixed;left:0;right:0;bottom:0;z-index:10;margin:0;background:var(--bg);border-top:1px solid var(--line);
+  padding:9px 16px calc(9px + env(safe-area-inset-bottom, 0px))}
+.actbar{display:flex;flex-direction:column;gap:8px;margin:14px 0 0}
+.actbar button{font:inherit;color:inherit}
+.actbar .primary{width:100%;min-height:56px;border:1px solid var(--acc);border-radius:13px;background:var(--acc);color:var(--accInk);font-weight:600;font-size:17px}
+.actbar .primary[disabled]{background:transparent;color:var(--faint);border-color:var(--line);border-style:dashed;font-weight:500}
+.actbar .wide{width:100%;min-height:48px;border:1px solid var(--line);border-radius:12px;background:var(--card);font-size:16px}
+.actbar .wide.on{border-color:var(--ink);border-width:2px}
+.actbar .thin{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.actbar .thin button[disabled]{opacity:.4}
+.actbar .thin button{min-height:42px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--faint);font-size:14px}
+.actbar .thin button.on{color:var(--ink);border-color:var(--ink)}
+#barTools{display:flex;gap:10px 12px;align-items:center;flex-wrap:wrap}
+#toolsBtn{display:none;min-width:42px;min-height:38px;font-size:18px;line-height:1}
+@media (min-width:701px){
+  body.cards main{padding-bottom:100px}
+  body.cards h1{display:none}
+  body.cards .cardTop{margin-top:8px}
+  body.cards .card{padding:14px 16px 10px}
+  body.cards .cw{font-size:30px}
+  body.cards .ask{margin:10px 0 7px}
+  body.cards .opts{gap:7px}
+  body.cards .opt{padding:8px 12px}
+  .actbar{flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px}
+  .actbar .primary{width:auto;min-width:190px;min-height:44px;padding:0 20px}
+  .actbar .wide{width:auto;min-height:44px;padding:0 14px}
+  .actbar .thin{display:flex;gap:8px}
+  .actbar .thin button{padding:0 14px;min-height:44px}
+}
+@media (min-width:701px) and (max-height:760px){
+  body.cards .owhy{display:none}      /* a short window: the card's own tags already say why */
+  body.cards .ctags{margin-bottom:4px}
+}
+.tapHint{display:none;font-size:12px;color:var(--faint);margin:-3px 2px 8px}
+@media (max-width:700px){
+  body.cards main{padding-bottom:300px}
+  body.cards h1,body.cards .meter .t{display:none}
+  body.cards #toolsBtn{display:block}
+  body.cards #barTools{display:none;width:100%}
+  body.cards.tools #barTools{display:flex}
+  body.cards .bar{padding:7px 16px;gap:8px}
+  body.cards .meter{flex:1 1 120px;min-width:100px}
+  body.cards .tabs{margin:8px 0 0}
+  body.cards .bar{padding:8px 16px;gap:8px}
+  body.cards .meter .t{font-size:12px}
+  body.cards .bar .go,body.cards .bar label.act{font-size:14px;padding:7px 11px}
+  body.cards .keys{display:none}
+  body.cards .tapHint{display:block}
+  body.cards .cardTop{margin-top:6px;margin-bottom:0}
+  .card{padding:12px 12px 8px}
+  .cw{font-size:25px}
+  .cg{font-size:16px}
+  .ctags{font-size:11px;gap:6px;margin-bottom:6px}
+  .ask{margin:10px 0 7px;font-size:12px}
+  .opts{gap:7px}
+  .opt{min-height:56px;grid-template-columns:36px 1fr;padding:8px 11px}
+  .opt kbd{width:32px;height:32px;font-size:15px}
+  .ow{font-size:19px}.og{font-size:14px}.owhy{font-size:11px}
+  .actbar{gap:6px;padding:8px 16px calc(8px + env(safe-area-inset-bottom, 0px))}
+  .actbar .primary{min-height:52px;font-size:16px}
+  .actbar .wide{min-height:46px;font-size:15px}
+  .actbar .thin button{min-height:40px}
+}
 @media (max-width:560px){.cw{font-size:28px}.opt{grid-template-columns:28px 1fr;gap:10px}.opt kbd{width:26px;height:26px}}
 
 </style></head><body><main>
@@ -99,8 +164,8 @@ body.list #cards{display:none}
 </div>
 <div class="tabs" id="tabs"></div>
 <div class="bar"><div class="meter"><div class="t" id="count"></div><div class="track"><div class="fill" id="fill"></div></div></div>
-<div class="seg" id="modeSeg"><button data-m="cards">Cards</button><button data-m="list">List</button></div><div class="seg" id="seg"><button data-f="todo">To do</button><button data-f="all">All</button><button data-f="done">Done</button></div>
-<button class="go" id="dl">Download the file</button><label class="act" for="loadIn" style="cursor:pointer">Load a file</label><input id="loadIn" type="file" accept="application/json,.json" hidden></div>
+<button class="act" id="toolsBtn" aria-label="More">⋯</button><div id="barTools"><div class="seg" id="modeSeg"><button data-m="cards">Cards</button><button data-m="list">List</button></div><div class="seg" id="seg"><button data-f="todo">To do</button><button data-f="all">All</button><button data-f="done">Done</button></div>
+<button class="go" id="dl">Download the file</button><label class="act" for="loadIn" style="cursor:pointer">Load a file</label><input id="loadIn" type="file" accept="application/json,.json" hidden></div></div>
 <p id="dlMsg" class="faint" style="font-size:13px;margin:6px 0 0"></p>
 <div class="legend"><span><span class="dot"></span>also in your flagged pile</span><span><span class="chip vt" style="padding:0 8px"><b>word</b></span> you tied these in vocabula</span><span>built 2026-09-20</span></div>
 <section id="cards">
@@ -358,6 +423,8 @@ function optsFor(x){
   return out;
 }
 const visibleOpts=()=>optsFor(curId()).slice(0,more?8:4);
+// a card opens showing the partners it already has, so Pair edits rather than only adds
+function resetSel(){ const x=curId(); sel=new Set(x?partnersOf(x):[]); }
 function buildQueue(){
   const d=DATA[di], left=(d.order||d.pile).filter(x=>!isDone(x));
   queue=left.filter(x=>!skipped.has(x)).concat(left.filter(x=>skipped.has(x)));
@@ -387,7 +454,7 @@ function cardName(x,id){ const d=DATA[di], h=norm(headOf(d.words[id][0]));
   const twice=h===norm(headOf(d.words[x][0]))||optsFor(x).filter(o=>norm(headOf(d.words[o.id][0]))===h).length>1;
   return twice?String(d.words[id][0]).replace(/\s*\(.*?\)\s*/g,' ').trim():headOf(d.words[id][0]); }
 function cardHtml(x){
-  const d=DATA[di], w=d.words[x], g=d.sug[x]||{}, opts=visibleOpts(), all=optsFor(x);
+  const d=DATA[di], s=st(), w=d.words[x], g=d.sug[x]||{}, opts=visibleOpts(), all=optsFor(x);
   const keep=!!(g.v&&g.v.length), tags=[];
   if(g.t) tags.push('<span class="ctag">'+esc(g.t)+'</span>');
   if((d.vflag||[]).includes(x)) tags.push('<span class="ctag">flagged in vocabula</span>');
@@ -397,14 +464,22 @@ function cardHtml(x){
     '<h2 class="cw">'+esc(w[0])+'</h2><p class="cg">'+esc(w[1])+'</p>'+
     (note&&!noteOpen?'<p class="noteShown">note: <b>'+esc(note)+'</b> \u00b7 c to edit</p>':'')+
     (noteOpen?'<div class="noteRow"><input id="cNoteIn" maxlength="120" placeholder="'+(noteFor(x)?'':'what tells them apart?')+'" value="'+esc(noteDraft)+'"><span class="faint" style="font-size:13px">\u21b5 save \u00b7 esc</span></div>':'')+
-    '<p class="ask">'+(keep?'Keep the pair you made in vocabula?':(opts.length?'Which word does this one get confused with?':'No suggestion for this one — search, or say no partner.'))+'</p>';
+    '<p class="ask">'+(keep?'Keep the pair you made in vocabula?':(opts.length?'Which word does this one get confused with?':'No suggestion for this one — search, or say no partner.'))+'</p>'+
+    '<p class="tapHint">Tap as many as you need, then Pair.</p>';
   if(opts.length){ h+='<ul class="opts">';
     opts.forEach((o,i)=>{ const ww=d.words[o.id], on=sel.has(o.id)||isOn(x,o.id);
       h+='<li><button class="opt'+(i===0&&keep?' keep':'')+(on?' sel':'')+'" data-i="'+i+'"><kbd>'+(i+1)+'</kbd>'+
          '<span>'+(D[di].pile.has(o.id)?'<span class="dot"></span>':'')+'<span class="ow">'+esc(cardName(x,o.id))+'</span> <span class="og">'+esc(ww[1])+'</span>'+
          '<span class="owhy">'+esc(o.why)+'</span></span></button></li>'; });
     h+='</ul>'; }
-  if(all.length>4) h+='<p style="margin:10px 0 0"><button class="act" data-act="more">'+(more?'fewer':'show '+(Math.min(all.length,8)-4)+' more')+' &middot; m</button></p>';
+
+  h+='<div class="actbar">'+
+     '<button class="primary" data-act="send"'+(sel.size?'':' disabled')+'>'+(sel.size?('Pair'+(sel.size>1?' \u00b7 '+sel.size+' words':'')):'Tap a word above')+'</button>'+
+     '<button class="wide" data-act="skip">Not sure \u2014 come back to it</button>'+
+     '<button class="wide'+(s.alone[x]?' on':'')+'" data-act="alone">No partner</button>'+
+     '<div class="thin">'+(all.length>4?'<button data-act="more"'+(more?' class="on"':'')+'>'+(more?'Fewer':'+'+(Math.min(all.length,8)-4)+' more')+'</button>':'<button data-act="more" disabled>No more</button>')+
+     '<button data-act="search">Search</button><button data-act="note"'+(note?' class="on"':'')+'>Note</button><button data-act="undo">Undo</button></div>'+
+     '</div>';
   h+='<div class="keys"><span><kbd>1</kbd>–<kbd>4</kbd> pair &amp; next</span><span><kbd>⇧</kbd>+number for several, then <kbd>↵</kbd></span>'+
      '<span><kbd>space</kbd> not sure</span><span><kbd>n</kbd> no partner</span><span><kbd>s</kbd> search</span><span><kbd>⌫</kbd> undo</span><span><kbd>l</kbd> list</span></div></div>';
   return h;
@@ -418,22 +493,26 @@ function doneHtml(){
 }
 function noteTime(){ const now=Date.now(); if(lastAt&&now-lastAt<60000){ times.push(now-lastAt); if(times.length>15) times.shift(); } lastAt=now; }
 function advance(){
-  sel.clear(); more=false; autoSkipped=0;
+  more=false; autoSkipped=0;
   let n=qpos+1;
   while(n<queue.length&&isDone(queue[n])){ n++; autoSkipped++; }
   qpos=n;
-  if(qpos>=queue.length){ const before=queue.length; buildQueue(); if(!queue.length||before===0) { renderCard(); return; } }
-  renderCard();
+  if(qpos>=queue.length){ const before=queue.length; buildQueue(); if(!queue.length||before===0) { resetSel(); renderCard(); return; } }
+  resetSel(); renderCard();
 }
 function pick(ids){
-  const x=curId(); if(!x) return; const s=st(), added=[], names=[];
-  for(const y of ids){ const k=pk(x,y); if(D[di].clepPair.has(k)) continue; if(!s.pairs[k]){ s.pairs[k]=1; added.push(k); } names.push(cardName(x,y)); }
+  const x=curId(); if(!x) return; const s=st(), added=[], dropped=[], names=[];
+  const now=[...new Set(ids)];
+  for(const y of now){ const k=pk(x,y); if(D[di].clepPair.has(k)) continue; if(!s.pairs[k]){ s.pairs[k]=1; added.push(k); } names.push(cardName(x,y)); }
+  for(const y of partnersOf(x)){ if(now.includes(y)) continue; const k=pk(x,y); if(D[di].clepPair.has(k)) continue;
+    dropped.push([k,s.labels[k]||null]); delete s.pairs[k]; delete s.labels[k]; }
   const hadAlone=!!s.alone[x]; delete s.alone[x];
   const carried=s.notes[x]; if(carried){ added.forEach(k=>{ if(!s.labels[k]) s.labels[k]=carried; }); delete s.notes[x]; }
-  lastDecision={x,keys:ids.map(y=>pk(x,y))};
-  undoStack.push({kind:'pair',x,added,hadAlone,carried,pos:qpos});
+  lastDecision={x,keys:now.map(y=>pk(x,y))};
+  undoStack.push({kind:'pair',x,added,dropped,hadAlone,carried,pos:qpos});
   saveStore(); noteTime(); advance();
-  cardMsg('Paired <b>'+esc(headOf(DATA[di].words[x][0]))+'</b> with <b>'+names.map(esc).join('</b>, <b>')+'</b> · ⌫ undo');
+  cardMsg(names.length?('Paired <b>'+esc(headOf(DATA[di].words[x][0]))+'</b> with <b>'+names.map(esc).join('</b>, <b>')+'</b> · ⌫ undo')
+                     :('Pairs cleared on <b>'+esc(headOf(DATA[di].words[x][0]))+'</b> · ⌫ undo'));
 }
 function noPartner(){
   const x=curId(); if(!x) return; const s=st(), had=!!s.alone[x]; s.alone[x]=1;
@@ -444,12 +523,14 @@ function skipCard(){ const x=curId(); if(!x) return; skipped.add(x); undoStack.p
 function undo(){
   const e=undoStack.pop(); if(!e){ cardMsg('Nothing to undo.'); return; }
   const s=st();
-  if(e.kind==='pair'){ e.added.forEach(k=>{ delete s.pairs[k]; delete s.labels[k]; }); if(e.hadAlone) s.alone[e.x]=1; if(e.carried) s.notes[e.x]=e.carried; }
+  if(e.kind==='pair'){ e.added.forEach(k=>{ delete s.pairs[k]; delete s.labels[k]; });
+    (e.dropped||[]).forEach(p=>{ s.pairs[p[0]]=1; if(p[1]) s.labels[p[0]]=p[1]; });
+    if(e.hadAlone) s.alone[e.x]=1; if(e.carried) s.notes[e.x]=e.carried; }
   else if(e.kind==='alone'&&!e.had) delete s.alone[e.x];
   else if(e.kind==='skip') skipped.delete(e.x);
   saveStore();
   if(queue[e.pos]!==e.x){ const i=queue.indexOf(e.x); if(i>=0) qpos=i; else { queue.splice(qpos,0,e.x); } } else qpos=e.pos;
-  sel.clear(); more=false; autoSkipped=0; renderCard(); cardMsg('Undone.');
+  more=false; autoSkipped=0; resetSel(); renderCard(); cardMsg('Undone.');
 }
 function toggleSel(id){ if(sel.has(id)) sel.delete(id); else sel.add(id); renderCard();
   cardMsg(sel.size?(sel.size+' picked · ↵ to pair them'):''); }
@@ -534,9 +615,17 @@ el('cardBody').addEventListener('keydown',e=>{
 });
 el('cardBody').addEventListener('click',e=>{
   if(e.target.id==='cNoteIn') return;
-  const o=e.target.closest('.opt'); if(o){ const list=visibleOpts(), i=+o.dataset.i, id=list[i]&&list[i].id; if(!id) return;
-    if(e.shiftKey) toggleSel(id); else pick([...sel,id]); return; }
-  const a=e.target.closest('[data-act=more]'); if(a){ more=!more; renderCard(); }
+  const o=e.target.closest('.opt');
+  if(o){ const list=visibleOpts(), i=+o.dataset.i, id=list[i]&&list[i].id; if(id) toggleSel(id); return; }
+  const a=e.target.closest('[data-act]'); if(!a) return;
+  const act=a.dataset.act;
+  if(act==='more'){ more=!more; renderCard(); }
+  else if(act==='send'){ if(sel.size) pick([...sel]); }
+  else if(act==='skip') skipCard();
+  else if(act==='alone') noPartner();
+  else if(act==='search') openSearch();
+  else if(act==='note') openNote(false);
+  else if(act==='undo') undo();
 });
 el('srchHits').addEventListener('click',e=>{ const b=e.target.closest('[data-h]'); if(b) pickSearch(+b.dataset.h); });
 el('srchIn').addEventListener('input',e=>searchRun(e.target.value));
@@ -546,6 +635,7 @@ function setMode(m){
   document.querySelectorAll('#modeSeg button').forEach(b=>b.classList.toggle('sel',b.dataset.m===m));
   if(m==='cards'){ buildQueue(); renderCard(); } else renderList();
 }
+document.getElementById('toolsBtn').addEventListener('click',()=>document.body.classList.toggle('tools'));
 el('modeSeg').addEventListener('click',e=>{ const m=e.target.dataset.m; if(m) setMode(m); });
 setMode('cards');
 </script></body></html>
